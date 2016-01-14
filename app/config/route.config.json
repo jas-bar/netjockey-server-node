@@ -1,0 +1,44 @@
+{
+  "routes": [
+    {
+      "route": "/v1/rooms",
+      "method": "GET",
+      "controller": "../controllers/v1/rooms/rooms-controller"
+    },
+    {
+      "route": "/v1/room/:roomid",
+      "method": "GET",
+      "controller": "../controllers/v1/get-whole-room/get-whole-room-controller"
+    },
+    {
+      "route": "/v1/room/:roomid/info",
+      "method": "GET",
+      "controller": "../controllers/v1/get-room-info/get-room-info-controller"
+    },
+    {
+      "route": "/v1/room/:roomid/queue",
+      "method": "GET",
+      "controller": "../controllers/v1/get-room-queue/get-room-queue-controller"
+    },
+    {
+      "route": "/v1/room/:roomid/time",
+      "method": "GET",
+      "controller": "../controllers/v1/get-room-time/get-room-time-controller"
+    },
+    {
+      "route": "/v1/room/:roomid/add-song",
+      "method": "POST",
+      "controller": "../controllers/v1/add-song/add-song-controller"
+    },
+    {
+      "route": "/v1/rooms/add",
+      "method": "POST",
+      "controller": "../controllers/v1/add-room/add-room-controller"
+    },
+    {
+      "route": "/v1/rooms/:roomid/rename",
+      "method": "POST",
+      "controller": "../controllers/v1/rename-room/rename-room-controller"
+    }
+  ]
+}
