@@ -7,7 +7,7 @@ class SongQueue
     removeFirst: -> @playlist.shift()
     isEmpty: -> @playlist.legth is 0
     view: -> {
-        playlist: [song.view()] for song in @playlist
+        playlist: (song.view() for song in @playlist)
     }
 
 module.exports = SongQueue;

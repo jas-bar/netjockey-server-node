@@ -16,17 +16,20 @@ class Room
         @currentSongTime = 0
     tick: ->
         if @queue.isEmpty()
-            @resetTimer
+            @resetTimer()
         else
             @currentSongTime += 1
             if @queue.getFirst().getDuration() == @currentSongTime
                 @queue.removeFirst()
                 @currentSongTime = 0
+                undefined
     activate: ->
         if not @queue.isEmpty()
             @currentSongTime = 0
+            that = @
             @timer = setInterval ->
-              @tick()
+              that.tick()
+              undefined
             , 1000
             undefined
         else undefined
