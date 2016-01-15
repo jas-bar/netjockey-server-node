@@ -4,7 +4,7 @@ class Room
     constructor: (@info) ->
         if not @info?
             throw new Error "roomInfo is undefined"
-        @queue = new SongQueue
+        @queue = new SongQueue()
         @timer = undefined
         @currentSongTime = 0
     getInfo: -> @info
@@ -19,7 +19,7 @@ class Room
             @resetTimer
         else
             @currentSongTime += 1
-            if @queue.getFirst().getDuration() is @currentSongTime
+            if @queue.getFirst().getDuration() == @currentSongTime
                 @queue.removeFirst()
                 @currentSongTime = 0
     activate: ->
@@ -28,7 +28,7 @@ class Room
             @timer = setInterval ->
               @tick()
             , 1000
-            null
+            undefined
         else undefined
     isActive: ->
         @timer?
