@@ -3,7 +3,7 @@ class RenameRoomController
         @roomEditor = require '../../../services/room-editor/room-editor-service'
 
     post: (req, res, next) ->
-        id = req.params.roomid
+        id = ""+req.params.roomid
         newName = req.body.name
 
         result = @roomEditor.rename(id, newName)

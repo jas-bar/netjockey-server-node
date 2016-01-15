@@ -19,7 +19,8 @@ class Room
             @resetTimer()
         else
             @currentSongTime += 1
-            if @queue.getFirst().getDuration() == @currentSongTime
+            first = @queue.getFirst()
+            if first? and first.getDuration() == @currentSongTime
                 @queue.removeFirst()
                 @currentSongTime = 0
                 undefined

@@ -13,10 +13,10 @@ class RoomEditorService
 
     rename: (id, newName) ->
         room = @roomsRepository_.getRoom(id)
-        if not room?
-            undefined
-        else
+        if room?
             room.getInfo().setName(newName)
             room
+        else
+            undefined
 
 module.exports = new RoomEditorService()

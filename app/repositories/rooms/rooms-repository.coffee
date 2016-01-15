@@ -11,7 +11,7 @@ class RoomsRepository
             rooms = new Map()
         rooms
     getRoom: (id) ->
-        @getRoomsMap()[id]
+        @getRoomsMap().get(id)
     addRoom: (room) ->
         @getRoomsMap().set(room.getInfo().getId(), room)
 
