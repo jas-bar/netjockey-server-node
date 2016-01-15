@@ -36,7 +36,7 @@
       "controller": "../controllers/v1/add-room/add-room-controller"
     },
     {
-      "route": "/v1/rooms/:roomid/rename",
+      "route": "/v1/room/:roomid/rename",
       "method": "POST",
       "controller": "../controllers/v1/rename-room/rename-room-controller"
     }
