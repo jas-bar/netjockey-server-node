@@ -8,12 +8,11 @@ class Room
         @timer = undefined
         @currentSongTime = 0
         @destroyTimer = undefined
-        @destroyed = false
+        @onDestroy = undefined
     getInfo: -> @info
     getQueue: -> @queue
     getCurrentSongTime: -> @currentSongTime
-    isDestroyed: ->
-        @destroyed
+    isDestroyed: -> @destroyed
     resetTimer: ->
         clearInterval @timer if @timer?
         @timer = undefined
@@ -23,13 +22,11 @@ class Room
         if @queue.isEmpty()
             @resetTimer()
             that = @
-            console.log('Scheduling room destroy')
             @destroyTimer = setTimeout ->
                 if that.getQueue().isEmpty()
-                    console.log('Destroying room on room side')
-                    that.destroyed = true
-                undefined
-            , 1000 * 60 * 2 
+                    if that.onDestroy?
+                        that.onDestroy(that)
+            , 1000 * 10 * 60
         else
             @currentSongTime += 1
             first = @queue.getFirst()

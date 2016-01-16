@@ -6,31 +6,22 @@ rooms = undefined
 class RoomsRepository
     constructor: ->
         @getRoomsMap()
-        that = @
-        @roomChecker = setInterval ->
-            that._checkRooms()
-        , 1000 * 60 * 5
-    _checkRooms: ->
-        @getRoomsMap().forEach (value, key, map)->
-            console.log(value)
-            console.log(key)
-            console.log(map)
-            if value? and value.isDestroyed()
-                console.log('Room repo found destroyed room, deleting...')
-                map.delete(key)
+
+    _onDestroy: (room)->
+        if room?
+            rooms.delete(room.getInfo().getId())
 
     getRoomsMap: ->
         if not rooms?
             rooms = new Map()
         rooms
     getRoom: (id) ->
-        room = @getRoomsMap().get(id)
-        if room? and room.isDestroyed()
-            @getRoomsMap.delete(room)
-            undefined
-        else
-            room
+        @getRoomsMap().get(id)
+
     addRoom: (room) ->
+        that = @
+        room.onDestroy = (room)->
+            that._onDestroy(room)
         @getRoomsMap().set(room.getInfo().getId(), room)
 
 @repo = new RoomsRepository()
