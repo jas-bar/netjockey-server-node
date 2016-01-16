@@ -18,16 +18,18 @@ class Room
         clearInterval @timer if @timer?
         @timer = undefined
         @currentSongTime = 0
-        that = @
-        @destroyTimer = setTimeout ->
-            if that.getQueue().isEmpty()
-                that.destroyed = true
-            undefined
-        , (1000 * 60 * 10)
 
     tick: ->
         if @queue.isEmpty()
             @resetTimer()
+            that = @
+            console.log('Scheduling room destroy')
+            @destroyTimer = setTimeout ->
+                if that.getQueue().isEmpty()
+                    console.log('Destroying room on room side')
+                    that.destroyed = true
+                undefined
+            , 1000 * 60 * 2 
         else
             @currentSongTime += 1
             first = @queue.getFirst()

@@ -16,9 +16,9 @@ function initializeSettings(settings) {
 function createArgumentSettings(settings) {
   settings.clusterEnabled = commandLineArgs[2] ? parseInt(commandLineArgs[2]) : 0;
   settings.environment = commandLineArgs[3] ? commandLineArgs[3].toLowerCase() : 'prod';
-  settings.hostName = commandLineArgs[4] ? commandLineArgs[4] : '0.0.0.0';
+  settings.hostName = process.env.OPENSHIFT_DIY_IP ? process.env.OPENSHIFT_DIY_IP : '0.0.0.0';
   settings.masterPort =  commandLineArgs[5] ? parseInt(commandLineArgs[5]) : 3000;
-  settings.workerPort =  commandLineArgs[6] ? parseInt(commandLineArgs[6]) : 9000;
+  settings.workerPort =  process.env.OPENSHIFT_DIY_PORT ? process.env.OPENSHIFT_DIY_PORT : 9000;
 }
 
 function loadConfigSettings(settings) {

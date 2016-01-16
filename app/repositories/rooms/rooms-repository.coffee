@@ -12,7 +12,11 @@ class RoomsRepository
         , 1000 * 60 * 5
     _checkRooms: ->
         @getRoomsMap().forEach (value, key, map)->
-            if value.isDestroyed()
+            console.log(value)
+            console.log(key)
+            console.log(map)
+            if value? and value.isDestroyed()
+                console.log('Room repo found destroyed room, deleting...')
                 map.delete(key)
 
     getRoomsMap: ->
@@ -21,7 +25,7 @@ class RoomsRepository
         rooms
     getRoom: (id) ->
         room = @getRoomsMap().get(id)
-        if room.isDestroyed()
+        if room? and room.isDestroyed()
             @getRoomsMap.delete(room)
             undefined
         else
