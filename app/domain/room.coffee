@@ -7,13 +7,24 @@ class Room
         @queue = new SongQueue()
         @timer = undefined
         @currentSongTime = 0
+        @destroyTimer = undefined
+        @destroyed = false
     getInfo: -> @info
     getQueue: -> @queue
     getCurrentSongTime: -> @currentSongTime
+    isDestroyed: ->
+        @destroyed
     resetTimer: ->
         clearInterval @timer if @timer?
         @timer = undefined
         @currentSongTime = 0
+        that = @
+        @destroyTimer = setTimeout ->
+            if that.getQueue().isEmpty()
+                that.destroyed = true
+            undefined
+        , (1000 * 60 * 10)
+
     tick: ->
         if @queue.isEmpty()
             @resetTimer()
@@ -27,6 +38,7 @@ class Room
     activate: ->
         if not @queue.isEmpty()
             @currentSongTime = 0
+            clearTimeout @destroyTimer if @destroyTimer?
             that = @
             @timer = setInterval ->
               that.tick()
