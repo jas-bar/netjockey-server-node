@@ -52,5 +52,9 @@ class Room
         currentSongTime: @currentSongTime,
         queue: @queue.view()
     }
+    viewMax: (max) ->
+        obj = @view()
+        obj.queue = @queue.viewMax(max)
+        obj
 
 module.exports = Room
