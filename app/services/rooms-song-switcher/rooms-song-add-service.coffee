@@ -1,14 +1,13 @@
 getYTVideoInfo = require 'youtube-info'
 Song = require '../../domain/song'
+Youtube = require '../../domain/youtube/youtube'
 
 youtubeRegex = /\?v=(.{11})/
 
 class RoomsSongAddService
     constructor: ->
         @roomsRepository_ = require '../../repositories/rooms/rooms-repository'
-    _queueAdd: (videoInfo, roomId)->
-        room = @roomsRepository_.getRoom(roomId)
-        song = new Song(videoInfo.duration, videoInfo.title, videoInfo.videoId, videoInfo.thumbnailUrl)
+    _queueAdd: (song, room)->
         wasActive = room.isActive()
         room.getQueue().add(song)
         if not wasActive
@@ -16,23 +15,12 @@ class RoomsSongAddService
     addToQueue: (roomId, url) ->
         room = @roomsRepository_.getRoom(roomId)
         if room?
-            if url?
-                array = youtubeRegex.exec(url)
-                if array?
-                    videoId = array[array.length - 1]
-                    if videoId?
-                        that = this
-                        getYTVideoInfo(videoId).then((videoInfo) ->
-                            if videoInfo?
-                                that._queueAdd(videoInfo, roomId)
-                        )
-                        {status: "ok"}
-                    else
-                        {error: "Malformed or unsupported url detected"}
-                else
-                    {error: "Malformed or unsupported url detected"}
-            else
-                {error: "No URL specified"}
+            that = this
+            Youtube.songFromUrl((song) ->
+                    if song?
+                        that._queueAdd(song, room)
+            ,url)
+            {status: "ok"}
         else
             {error: "Room not found"}
 
