@@ -7,4 +7,6 @@ Clients play music from YouTube and handle user interface.
 This netjockey server is written in node.js using coffeescript.
 To configure the server, you can use files in `app/config/settings directory`.
 
+Are you looking for a client? Here's a link to our official HTML client: https://github.com/jas-bar/netjockey-client-html
+
 netjockey-server-node project is under MIT license. See LICENSE for more information
