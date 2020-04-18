@@ -290,7 +290,8 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "build": "coffee --compile app"
   },
   "repository": {
     "type": "git",

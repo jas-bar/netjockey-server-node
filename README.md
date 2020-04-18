@@ -10,3 +10,13 @@ To configure the server, you can use files in `app/config/settings directory`.
 Are you looking for a client? Here's a link to our official HTML client: https://github.com/jas-bar/netjockey-client-html
 
 netjockey-server-node project is under MIT license. See LICENSE for more information
+
+# How to setup
+
+```sh
+git clone https://github.com/jas-bar/netjockey-server-node/
+cd netjockey-server-node
+npm install
+npm run-script build
+npm start
+```
