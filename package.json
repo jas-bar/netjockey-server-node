@@ -31,7 +31,7 @@
     "base64url": "^1.0.6",
     "benchmark": "^2.1.0",
     "better-assert": "^1.0.2",
-    "bl": "^1.1.2",
+    "bl": "^4.0.3",
     "blob": "0.0.4",
     "bluebird": "^3.4.1",
     "body-parser": "^1.15.2",
