@@ -123,7 +123,7 @@
     "global": "^4.3.0",
     "google-auth-library": "^0.9.8",
     "google-p12-pem": "^0.1.0",
-    "googleapis": "^9.0.0",
+    "googleapis": "^59.0.0",
     "graceful-fs": "^4.1.4",
     "graceful-readlink": "^1.0.1",
     "growl": "^1.9.2",
